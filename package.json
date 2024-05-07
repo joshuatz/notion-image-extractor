@@ -1,0 +1,19 @@
+{
+	"name": "notion-image-extractor",
+	"private": true,
+	"version": "1.0.0",
+	"description": "See README.md",
+	"main": "index.mjs",
+	"scripts": {
+		"build": "node ./scripts/bookmarklet-creator.mjs"
+	},
+	"keywords": [],
+	"author": {
+		"name": "Joshua Tzucker",
+		"url": "https://joshuatz.com/?utm_source=package"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"bookmarkleter": "^1.1.0"
+	}
+}
