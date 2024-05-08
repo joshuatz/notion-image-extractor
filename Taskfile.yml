@@ -19,6 +19,7 @@ version: '3'
 
 tasks:
   build: npm run build
+  check: npx tsc --noEmit
   bump:
     desc: Version bump, add release row to README
     cmd: |
