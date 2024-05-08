@@ -64,7 +64,7 @@ const pageHTML = `
 		<p>
 			${buildHtmlInstallLink(
 				`${windowGlobalAccessor}.addInlineTriggerUx()`,
-				bookmarkletTitle + ' - Add Inline Download Buttons'
+				bookmarkletTitle + ' - Add Inline Buttons'
 			)}
 		</p>
 		<p>
