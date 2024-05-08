@@ -9,16 +9,18 @@ import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import bookmarkleter from 'bookmarkleter';
+import packageInfo from '../package.json' assert { type: 'json' };
 
 const bookmarkletTitle = 'Notion Image Extractor';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rawCode = fs.readFileSync(path.join(__dirname, '..', 'index.mjs'));
 const windowGlobalAccessor = 'window.notionImageExtractor';
 
-const buildTimeStampMs = (new Date()).getTime();
+const buildTimeStampMs = new Date().getTime();
+const version = packageInfo.version;
 
 const buildHtmlInstallLink = (invocationCode = '', title = bookmarkletTitle) => {
-	const finalRuntimeCode = rawCode + '\n' + invocationCode;
+	const finalRuntimeCode = rawCode + `\nconsole.log('${bookmarkletTitle} - v${version}');\n` + invocationCode;
 	const bookmarkletString = bookmarkleter(finalRuntimeCode, { minify: true, iife: true })?.replace(/\n|\t/g, '');
 	return `<a class="bookmarklet" href="${bookmarkletString}">${title}</a>`;
 };
@@ -55,7 +57,7 @@ const pageHTML = `
 <body>
 	<div id="main">
 		<h1>${bookmarkletTitle} Install:</h1>
-		<h2>Generated at <span class="timestamp">buildTimeStampMs</span></h2>
+		<h2>v${version} - Generated at <span class="timestamp">buildTimeStampMs</span></h2>
 		<p>
 		Drag this button to your bookmarks bar to save it as a bookmarklet:
 		</p>

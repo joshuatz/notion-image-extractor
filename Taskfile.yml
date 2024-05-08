@@ -1,0 +1,32 @@
+### @file ###
+#
+# This is a "Taskfile", for use with the `task` (aka `go-task`) runner.
+# It supports cross-platform scripting, task dependency / fingerprinting, and more.
+# See: https://github.com/go-task/task
+#
+# Many tasks are automatically run together, via dependency arrays, so you don't
+# have to remember to manually do things like install dependencies, re-build, etc.
+#
+# Tips:
+# - Use `task TASK_NAME` to run a specific task
+# - Use `task --list-all` in the project root to list all tasks.
+# - For a given task:
+#     - Use `--summary` to show the description / help.
+#     - Use `--force` to force the task to re-run, even if computed deps haven't changed.
+#############
+
+version: '3'
+
+tasks:
+  build: npm run build
+  bump:
+    desc: Version bump, add release row to README
+    cmd: |
+      BUMP_TARGET={{.CLI_ARGS}}
+      if [[ -z "$BUMP_TARGET" ]]; then
+        BUMP_TARGET="minor"
+      fi
+      npm version "$BUMP_TARGET" --no-git-tag-version
+      NEW_VERSION=$(node -p 'require("./package.json").version')
+      TODAY=$(date +"%Y-%m-%d")
+      echo "$NEW_VERSION | $TODAY | RELEASE_NOTES" >> ./README.md

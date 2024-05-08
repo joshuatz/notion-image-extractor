@@ -22,6 +22,8 @@ Finally - to run it - simply click the bookmarklet while on a given Notion page.
 
 Find 'em [here](https://jsbin.com/fuzalijega/edit?html,output).
 
-## TODO
+## Releases
 
-- [ ] Add "Copy image to clipboard" inline buttons
+Version | Date | Notes
+--- | --- | ---
+1.0.0 | 2024-05-06 | Initial Release
